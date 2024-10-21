@@ -1,5 +1,6 @@
 .header a {
-    color: #007bff; /* Change this to your desired color */
+    color: #001d3d; /* Change this to your desired color */
+    font-weight: bold;
     text-decoration: none; /* Optional: Remove underline */
 }
 

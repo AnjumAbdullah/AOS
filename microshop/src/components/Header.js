@@ -20,7 +20,7 @@ const Header = () => {
 };
 
 const headerStyle = {
-    background: '#333',
+    background: '#fe8d63',
     color: '#fff',
     padding: '10px 0',
     textAlign: 'center'
