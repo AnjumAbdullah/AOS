@@ -26,7 +26,7 @@ function App() {
 }
 
 const appStyle = {
-    // minHeight: '100vh',
+    minHeight: '100vh',
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'space-between'
