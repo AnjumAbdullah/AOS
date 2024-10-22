@@ -1,0 +1,95 @@
+/* Sale.css */
+.sale-container {
+    text-align: center;
+    padding: 40px 20px;
+    background: linear-gradient(45deg, #ff6f61, #f5a536, #3883d9);
+    background-size: 200% 200%;
+    animation: backgroundShift 8s ease infinite;
+    color: white;
+    min-height: 100vh; /* Full page height */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+@keyframes backgroundShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.sale-title {
+    font-size: 3rem;
+    font-family: 'Poppins', sans-serif;
+    color:rgb(49, 45, 45);
+    margin-bottom: 20px;
+    animation: bounce 1s ease infinite alternate;
+}
+
+@keyframes bounce {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-10px); }
+}
+
+.countdown-timer h2 {
+    font-size: 1.5rem;
+    margin: 10px 0;
+}
+
+.timer {
+    display: flex;
+    gap: 20px;
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.timer div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.timer span {
+    font-size: 0.8rem;
+    color: #f1f1f1;
+}
+
+.offers h2 {
+    margin: 30px 0 10px;
+    font-size: 2rem;
+}
+
+.offers ul {
+    list-style: none;
+    padding: 0;
+}
+
+.offers li {
+    font-size: 1.2rem;
+    margin: 10px 0;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 10px;
+    border-radius: 8px;
+    transition: transform 0.2s;
+}
+
+.offers li:hover {
+    transform: scale(1.05);
+}
+
+.shop-now-btn {
+    background: #ff6f61;
+    color: white;
+    font-size: 1.2rem;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.2s;
+}
+
+.shop-now-btn:hover {
+    background: #f5a536;
+    transform: scale(1.1);
+}

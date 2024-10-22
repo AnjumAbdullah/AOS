@@ -5,6 +5,7 @@ import Header from './components/Header';
 import Home from './components/Home';
 import Products from './components/Products';
 import Orders from './components/Orders';
+import Sale from './components/Sale';
 import About from './components/About';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
@@ -18,6 +19,7 @@ function App() {
                     <Route path="/" element={<Home />} />
                     <Route path="/products" element={<Products />} />
                     <Route path="/orders" element={<Orders />} />
+                    <Route path="/sale" element={<Sale />} />
                     <Route path="/about" element={<About />} />
                     <Route path="/contact" element={<Contact />} />
                 </Routes>
