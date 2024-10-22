@@ -11,21 +11,39 @@
     color: #fff;
     padding: 20px 0;
     text-align: center;
-    transition: transform 0.3s ease; /* Subtle scale on hover */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add shadow for separation */
+    transition: transform 0.3s ease; /* Subtle scale on hover */
+    height: 65px; /* Set consistent header height */
 }
 
+/* Ensure header height is respected */
+body {
+    margin: 0;
+    padding-top: 80px; /* Match the header height */
+    box-sizing: border-box;
+}
+
+/* Optional: Wrapper to ensure layout consistency across pages */
+.main-content {
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Header Hover Effect */
 .header.hovered {
     transform: scale(1.02); /* Slight zoom when hovered */
 }
 
+/* Heading Styling */
 .microshop-heading {
     font-family: 'Poppins', sans-serif;
     font-size: 2rem;
     letter-spacing: 2px;
-    margin-bottom: 10px;
+    margin: 0; /* Ensure no extra spacing below */
 }
 
+/* Navigation Styling */
 .nav-list {
     list-style: none;
     padding: 0;
@@ -47,50 +65,30 @@
     transform: scale(1.1); /* Slight zoom effect on hover */
 }
 
-/* Smooth gradient background animation */
+/* Gradient Animation */
 @keyframes gradientAnimation {
-    0% {
-        background-position: 0% 50%;
-    }
-    50% {
-        background-position: 100% 50%;
-    }
-    100% {
-        background-position: 0% 50%;
-    }
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
 }
 
-/* Add padding to prevent content overlap */
-body {
-    padding-top: 80px; /* Adjust this value to match the header height */
-}
-
-/* Header.css */
-
-/* Gradient animation for the Black Friday Sale link */
+/* Black Friday Sale Gradient Link */
 .sale-link {
     background: linear-gradient(45deg, #ff6f61, #f5a536, #3883d9);
-    background-size: 200% 200%;  /* For smooth transition */
+    background-size: 200% 200%;
     -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent; /* For gradient text effect */
+    -webkit-text-fill-color: transparent;
     animation: gradientText 3s ease infinite;
     font-weight: bold;
     transition: transform 0.2s;
 }
 
 .sale-link:hover {
-    transform: scale(1.1); /* Slight zoom effect on hover */
+    transform: scale(1.1);
 }
 
-/* Keyframes for the gradient animation */
 @keyframes gradientText {
-    0% {
-        background-position: 0% 50%;
-    }
-    50% {
-        background-position: 100% 50%;
-    }
-    100% {
-        background-position: 0% 50%;
-    }
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
 }
