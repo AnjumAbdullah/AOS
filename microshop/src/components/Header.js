@@ -1,10 +1,27 @@
-// src/components/Header.js
 import './Header.css'; 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { auth } from '../firebase'; // Import auth from your Firebase config file
+import { onAuthStateChanged, signOut } from 'firebase/auth';
 
 const Header = () => {
     const [isHovered, setIsHovered] = useState(false);
+    const [user, setUser] = useState(null); // To track the user's authentication state
+
+    // Monitor authentication state
+    useEffect(() => {
+        const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+            setUser(currentUser);
+        });
+        return () => unsubscribe();
+    }, []);
+
+    // Handle logout
+    const handleLogout = () => {
+        signOut(auth).catch((error) => {
+            console.error("Error signing out: ", error);
+        });
+    };
 
     return (
         <header className={`header ${isHovered ? 'hovered' : ''}`} 
@@ -19,6 +36,16 @@ const Header = () => {
                     <li><Link to="/sale" className='sale-link'>Black Friday Sale!</Link></li>
                     <li><Link to="/about">About</Link></li>
                     <li><Link to="/contact">Contact</Link></li>
+
+                    {/* Conditionally render based on user's authentication status */}
+                    {!user ? (
+                        <>
+                            <li><Link to="/Signup">Sign Up</Link></li>
+                            <li><Link to="/Login">Login</Link></li>
+                        </>
+                    ) : (
+                        <li><button onClick={handleLogout} className="logout-button">Logout</button></li>
+                    )}
                 </ul>
             </nav>
         </header>

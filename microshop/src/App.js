@@ -9,6 +9,12 @@ import Sale from './components/Sale';
 import About from './components/About';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
+import Signup from './components/Signup';
+import Login from './components/Login';
+import Logout from './components/Logout';
+
+
+{/* <Route path="/products" element={<PrivateRoute><Products /></PrivateRoute>} />  */}
 
 function App() {
     return (
@@ -22,6 +28,9 @@ function App() {
                     <Route path="/sale" element={<Sale />} />
                     <Route path="/about" element={<About />} />
                     <Route path="/contact" element={<Contact />} />
+                    <Route path="/signup" element={<Signup />} />
+                    <Route path="/login" element={<Login />} />
+                    <Route path="/logout" element={<Logout />} />
                 </Routes>
                 <Footer />
             </div>
