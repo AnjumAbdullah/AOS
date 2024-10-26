@@ -5,6 +5,44 @@ import { auth } from '../firebase';
 import './Signup.css'; // Import custom CSS for styling
 
 const SignUp = () => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
+
+  const handleSignUp = async (e) => {
+    e.preventDefault();
+    try {
+      await createUserWithEmailAndPassword(auth, email, password);
+      setError('');
+      alert("Sign-up successful!");
+    } catch (err) {
+      switch (err.code) {
+        case 'auth/email-already-in-use':
+          setError('This email is already in use. Please use a different email.');
+          break;
+        case 'auth/weak-password':
+          setError('Password should be at least 6 characters long.');
+          break;
+        case 'auth/invalid-email':
+          setError('Invalid email format.');
+          break;
+        case 'auth/operation-not-allowed':
+          setError('Sign-up is currently disabled. Please contact support.');
+          break;
+        case 'auth/network-request-failed':
+          setError('Network error. Please check your internet connection.');
+          break;
+        case 'auth/too-many-requests':
+          setError('Too many sign-up attempts. Please try again later.');
+          break;
+        default:
+          setError('Error signing up. Please try again.');
+      }
+    }
+  };
+
+ 
+const SignUp = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
@@ -67,6 +105,9 @@ const SignUp = () => {
             </div>
         </div>
     );
+}
+
 };
+
 
 export default SignUp;
