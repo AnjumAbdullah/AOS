@@ -1,4 +1,4 @@
-/* Sale.css */
+/* Sale Page Styling */
 .sale-container {
     text-align: center;
     padding: 40px 20px;
@@ -6,11 +6,12 @@
     background-size: 200% 200%;
     animation: backgroundShift 8s ease infinite;
     color: white;
-    min-height: 100vh; /* Full page height */
+    min-height: calc(100vh - 65px); /* Adjust height to avoid overlap with header */
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
+    margin-top: 65px; /* Ensure it starts below the header */
 }
 
 @keyframes backgroundShift {
@@ -22,7 +23,7 @@
 .sale-title {
     font-size: 3rem;
     font-family: 'Poppins', sans-serif;
-    color:rgb(49, 45, 45);
+    color: rgb(49, 45, 45);
     margin-bottom: 20px;
     animation: bounce 1s ease infinite alternate;
 }

@@ -1,14 +1,13 @@
 import './Header.css'; 
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { auth } from '../firebase'; // Import auth from your Firebase config file
+import { auth } from '../firebase';
 import { onAuthStateChanged, signOut } from 'firebase/auth';
 
 const Header = () => {
     const [isHovered, setIsHovered] = useState(false);
-    const [user, setUser] = useState(null); // To track the user's authentication state
+    const [user, setUser] = useState(null);
 
-    // Monitor authentication state
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
             setUser(currentUser);
@@ -16,7 +15,6 @@ const Header = () => {
         return () => unsubscribe();
     }, []);
 
-    // Handle logout
     const handleLogout = () => {
         signOut(auth).catch((error) => {
             console.error("Error signing out: ", error);
@@ -24,31 +22,39 @@ const Header = () => {
     };
 
     return (
-        <header className={`header ${isHovered ? 'hovered' : ''}`} 
-            onMouseEnter={() => setIsHovered(true)} 
-            onMouseLeave={() => setIsHovered(false)}>
-            <h1 className="microshop-heading">Microshop</h1>
-            <nav>
-                <ul className="nav-list">
-                    <li><Link to="/">Home</Link></li>
-                    <li><Link to="/products">Products</Link></li>
-                    <li><Link to="/orders">Manage Orders</Link></li>
-                    <li><Link to="/sale" className='sale-link'>Black Friday Sale!</Link></li>
-                    <li><Link to="/about">About</Link></li>
-                    <li><Link to="/contact">Contact</Link></li>
+        <>
+            <header className={`header ${isHovered ? 'hovered' : ''}`}
+                onMouseEnter={() => setIsHovered(true)}
+                onMouseLeave={() => setIsHovered(false)}>
+                <h1 className="microshop-heading">Microshop</h1>
+                <nav>
+                    <ul className="nav-list">
+                        <li><Link to="/">Home</Link></li>
+                        <li><Link to="/products">Products</Link></li>
+                        <li><Link to="/orders">Manage Orders</Link></li>
+                        <li><Link to="/sale" className='sale-link'>Black Friday Sale!</Link></li>
+                        <li><Link to="/about">About</Link></li>
+                        <li><Link to="/contact">Contact</Link></li>
 
-                    {/* Conditionally render based on user's authentication status */}
-                    {!user ? (
-                        <>
-                            <li><Link to="/Signup">Sign Up</Link></li>
-                            <li><Link to="/Login">Login</Link></li>
-                        </>
-                    ) : (
-                        <li><button onClick={handleLogout} className="logout-button">Logout</button></li>
-                    )}
-                </ul>
-            </nav>
-        </header>
+                        {!user ? (
+                            <>
+                                <li><Link to="/Signup">Sign Up</Link></li>
+                                <li><Link to="/Login">Login</Link></li>
+                            </>
+                        ) : (
+                            <li>
+                                <button onClick={handleLogout} className="logout-button">Logout</button>
+                            </li>
+                        )}
+                    </ul>
+                </nav>
+            </header>
+
+            {/* Main content */}
+            <main className="main-content">
+                {/* Rendered child components go here */}
+            </main>
+        </>
     );
 };
 
