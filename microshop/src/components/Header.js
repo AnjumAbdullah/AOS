@@ -50,10 +50,7 @@ const Header = () => {
                 </nav>
             </header>
 
-            {/* Main content */}
-            <main className="main-content">
-                {/* Rendered child components go here */}
-            </main>
+            
         </>
     );
 };
