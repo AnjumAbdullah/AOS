@@ -14,6 +14,7 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease;
     height: 65px;
+    min-height: 6vh;
 }
 
 /* Ensure the layout leaves space for the header */

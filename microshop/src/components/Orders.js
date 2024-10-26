@@ -17,41 +17,43 @@ const Orders = () => {
   };
 
   return (
-    <div className="order-container">
-      <h1>Order Management</h1>
-      <table className="order-table">
-        <thead>
-          <tr>
-            <th>Order ID</th>
-            <th>Customer</th>
-            <th>Status</th>
-            <th>Total</th>
-            <th>Action</th>
-          </tr>
-        </thead>
-        <tbody>
-          {orders.map((order) => (
-            <tr key={order.id}>
-              <td>{order.id}</td>
-              <td>{order.customer}</td>
-              <td>
-                <span className={`status-badge ${order.status.toLowerCase()}`}>
-                  {order.status}
-                </span>
-              </td>
-              <td>${order.total.toFixed(2)}</td>
-              <td>
-                <button
-                  className="view-button"
-                  onClick={() => handleOrderClick(order.id)}
-                >
-                  View Details
-                </button>
-              </td>
+    <div className="main-wrapper">
+      <div className="order-container">
+        <h1>Order Management</h1>
+        <table className="order-table">
+          <thead>
+            <tr>
+              <th>Order ID</th>
+              <th>Customer</th>
+              <th>Status</th>
+              <th>Total</th>
+              <th>Action</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {orders.map((order) => (
+              <tr key={order.id}>
+                <td>{order.id}</td>
+                <td>{order.customer}</td>
+                <td>
+                  <span className={`status-badge ${order.status.toLowerCase()}`}>
+                    {order.status}
+                  </span>
+                </td>
+                <td>${order.total.toFixed(2)}</td>
+                <td>
+                  <button
+                    className="view-button"
+                    onClick={() => handleOrderClick(order.id)}
+                  >
+                    View Details
+                  </button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 };

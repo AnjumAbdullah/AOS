@@ -1,4 +1,4 @@
-.sign-up-wrapper {
+.login-wrapper {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -6,7 +6,7 @@
     background-color: #f4f4f4; /* Background color */
 }
 
-.sign-up-container {
+.login-container {
     background-color: #fff;
     padding: 40px;
     border-radius: 10px;
@@ -16,7 +16,7 @@
     text-align: center;
 }
 
-.sign-up-container h2 {
+.login-container h2 {
     margin-bottom: 20px;
     color: #333;
 }
@@ -64,27 +64,5 @@ button:hover:enabled {
     background-color: #ffe6e6;
     padding: 10px;
     border-radius: 5px;
-    margin-bottom: 10px;
-}
-
-.success-message {
-    color: #00b894;
-    background-color: #e6ffe6;
-    padding: 10px;
-    border-radius: 5px;
-    margin-bottom: 10px;
-}
-
-.alternative-options {
-    margin-top: 20px;
-    font-size: 14px;
-}
-
-.alternative-options a {
-    color: #0984e3;
-    text-decoration: none;
-}
-
-.alternative-options a:hover {
-    text-decoration: underline;
+    margin-top: 10px;
 }

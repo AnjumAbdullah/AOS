@@ -1,0 +1,23 @@
+/* Contact.css */
+.contact-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 70vh;  /* Adjust for header height */
+    padding: 20px;
+    background: linear-gradient(135deg, #f9f9f9, #e9ecef);
+    text-align: center;
+    margin-top: 60px; /* Space for the header */
+}
+
+.contact-wrapper h2 {
+    color: #4a90e2;
+    font-family: 'Helvetica', sans-serif;
+    margin-bottom: 10px;
+}
+
+.contact-wrapper p {
+    color: #343a40;
+    font-size: 1rem;
+}

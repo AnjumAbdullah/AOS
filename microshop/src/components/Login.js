@@ -1,7 +1,7 @@
-// src/components/Login.js
 import React, { useState } from 'react';
 import { auth } from '../firebase';
 import { signInWithEmailAndPassword } from 'firebase/auth';
+import './Login.css'; // Import custom CSS for styling
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -41,24 +41,32 @@ const Login = () => {
   };
 
   return (
-    <div>
-      <h2>Login</h2>
-      <form onSubmit={handleLogin}>
-        <input
-          type="email"
-          placeholder="Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
-        <input
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-        <button type="submit">Login</button>
-      </form>
-      {error && <p style={{ color: 'red' }}>{error}</p>}
+    <div className="login-wrapper">
+      <div className="login-container">
+        <h2>Login</h2>
+        <form onSubmit={handleLogin} className="login-form">
+          <div className="input-group">
+            <input
+              type="email"
+              placeholder="Email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
+          </div>
+          <div className="input-group">
+            <input
+              type="password"
+              placeholder="Password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+          </div>
+          <button type="submit">Login</button>
+        </form>
+        {error && <p className="error-message">{error}</p>}
+      </div>
     </div>
   );
 };

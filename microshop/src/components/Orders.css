@@ -1,9 +1,19 @@
 /* Orders.css */
 
+.main-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh;
+    background-color: #f0f2f5;
+    padding-top: 70px; /* Space to prevent overlap with header */
+}
+
 .order-container {
     padding: 50px;
     max-width: 900px;
-    margin: 0 auto;
+    width: 100%;
+    margin: 0 20px; /* Adds some margin for smaller screens */
     text-align: center;
     background-color: #f9f9f9;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -16,6 +26,8 @@
     margin-bottom: 20px;
     color: #003049;
 }
+
+/* Existing table and button styles remain unchanged */
 
 .order-table {
     width: 100%;

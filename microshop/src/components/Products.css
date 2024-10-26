@@ -1,0 +1,84 @@
+/* Products.css */
+
+.outer-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 30px 0; /* Increased vertical padding */
+    background-color: #f4f4f4;
+    width: 100vw; /* Full viewport width */
+    height: 100vh; /* Optional: Full viewport height */
+}
+
+.products-container {
+    display: flex;
+    flex-wrap: wrap; /* Wraps items on smaller screens */
+    gap: 30px; /* Increased spacing between items */
+    justify-content: space-evenly; /* Distributes space evenly */
+    padding: 30px; /* Increased padding within container */
+    width: 100%; /* Ensures container takes full width */
+    max-width: 1200px; /* Optional: Limits width on large screens */
+}
+
+.product-card {
+    flex: 1 1 200px; /* Further reduced minimum width for cards */
+    max-width: 250px; /* Reduced max width of each card */
+    border: 1px solid #e0e0e0;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    background-color: #fff;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+}
+
+.product-card:hover {
+    transform: scale(1.02); /* Further reduced scale effect on hover */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.product-image {
+    width: 100%;
+    height: auto;
+    transition: transform 0.3s ease;
+}
+
+.product-info {
+    padding: 20px;
+    text-align: center;
+}
+
+.product-title {
+    font-size: 1.4em; /* Slightly reduced font size */
+    margin: 10px 0;
+    font-weight: bold;
+    color: #333;
+}
+
+.product-description {
+    font-size: 0.9em; /* Reduced font size for description */
+    color: #777;
+    margin-bottom: 15px;
+}
+
+.product-price {
+    font-size: 1.1em; /* Reduced font size for price */
+    font-weight: bold;
+    color: #1a73e8;
+    margin-bottom: 15px;
+}
+
+.buy-button {
+    background-color: #1a73e8;
+    color: #fff;
+    padding: 10px 15px; /* Slightly reduced padding */
+    border: none;
+    border-radius: 5px;
+    font-size: 0.9em; /* Reduced font size for button */
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.buy-button:hover {
+    background-color: #145dbf;
+}
