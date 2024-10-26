@@ -26,7 +26,7 @@ const Sale = () => {
   }, []);
 
   return (
-    <div className="sale-container">
+    <main className="sale-container">
       <h1 className="sale-title">🎉 Black Friday Sale! 🎉</h1>
       <div className="countdown-timer">
         <h2>Sale Begins In:</h2>
@@ -46,7 +46,7 @@ const Sale = () => {
         </ul>
       </div>
       <button className="shop-now-btn">Shop Now</button>
-    </div>
+    </main>
   );
 };
 
