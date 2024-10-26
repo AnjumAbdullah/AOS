@@ -14,7 +14,7 @@ import Login from './components/Login';
 import Logout from './components/Logout';
 
 
-{/* <Route path="/products" element={<PrivateRoute><Products /></PrivateRoute>} />  */}
+// {/* <Route path="/products" element={<PrivateRoute><Products /></PrivateRoute>} />  */}
 
 function App() {
     return (
@@ -39,7 +39,7 @@ function App() {
 }
 
 const appStyle = {
-    minHeight: '100vh',
+    // minHeight: '100vh',
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'space-between'
