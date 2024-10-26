@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../firebase';
-import './Signup.css'; // Import custom CSS for styling
+import './Signup.css';
+import { FaCheckCircle, FaSpinner } from 'react-icons/fa'; // Icons for interactivity
 
 const SignUp = () => {
   const [email, setEmail] = useState('');
@@ -9,6 +10,20 @@ const SignUp = () => {
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
+  const [passwordStrength, setPasswordStrength] = useState('');
+
+  const handlePasswordChange = (e) => {
+    const newPass = e.target.value;
+    setPassword(newPass);
+
+    if (newPass.length >= 8) {
+      setPasswordStrength('Strong');
+    } else if (newPass.length >= 5) {
+      setPasswordStrength('Medium');
+    } else {
+      setPasswordStrength('Weak');
+    }
+  };
 
   const handleSignUp = async (e) => {
     e.preventDefault();
@@ -45,7 +60,7 @@ const SignUp = () => {
       <div className="sign-up-container">
         <h2>Create Your Account</h2>
         {error && <p className="error-message">{error}</p>}
-        {success && <p className="success-message">Signup successful! 🎉</p>}
+        {success && <p className="success-message"><FaCheckCircle /> Signup successful! 🎉</p>}
 
         <form onSubmit={handleSignUp} className={`sign-up-form ${loading ? 'loading' : ''}`}>
           <div className="input-group">
@@ -63,13 +78,16 @@ const SignUp = () => {
               type="password" 
               placeholder="Enter your password" 
               value={password} 
-              onChange={(e) => setPassword(e.target.value)} 
+              onChange={handlePasswordChange} 
               required 
             />
+            <small className={`password-strength ${passwordStrength.toLowerCase()}`}>
+              {passwordStrength && `Password Strength: ${passwordStrength}`}
+            </small>
           </div>
 
           <button type="submit" disabled={loading}>
-            {loading ? 'Signing up...' : 'Sign Up'}
+            {loading ? <FaSpinner className="spinner" /> : 'Sign Up'}
           </button>
         </form>
 

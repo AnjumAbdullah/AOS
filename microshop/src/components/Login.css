@@ -1,29 +1,46 @@
+/* Wrapper for centering the form */
 .login-wrapper {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh; /* Full viewport height */
-    background-color: #f4f4f4; /* Background color */
+    height: 100vh;
+    background: linear-gradient(135deg, #74b9ff, #a29bfe);
+    animation: gradient 5s ease infinite;
+    background-size: 300% 300%;
 }
 
+/* Container for the form */
 .login-container {
     background-color: #fff;
     padding: 40px;
-    border-radius: 10px;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    border-radius: 15px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
     max-width: 400px;
     width: 100%;
     text-align: center;
+    transition: transform 0.2s;
 }
 
+.login-container:hover {
+    transform: scale(1.05);
+}
+
+/* Title styling */
 .login-container h2 {
     margin-bottom: 20px;
-    color: #333;
+    color: #2d3436;
 }
 
+/* Input group styling */
 .input-group {
     margin-bottom: 15px;
     position: relative;
+}
+
+/* Password group with visibility icon */
+.password-group {
+    display: flex;
+    align-items: center;
 }
 
 input {
@@ -32,13 +49,30 @@ input {
     border: 1px solid #dfe6e9;
     border-radius: 5px;
     transition: border-color 0.3s ease-in-out;
+    background-color: #f1f2f6;
+    font-size: 16px;
 }
 
 input:focus {
     border-color: #74b9ff;
     outline: none;
+    background-color: #dfe6e9;
 }
 
+/* Password visibility toggle icon */
+.toggle-password {
+    position: absolute;
+    right: 12px;
+    cursor: pointer;
+    color: #636e72;
+    font-size: 18px;
+}
+
+.toggle-password:hover {
+    color: #0984e3;
+}
+
+/* Button styling */
 button {
     width: 100%;
     padding: 12px;
@@ -48,6 +82,7 @@ button {
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s;
+    font-size: 16px;
 }
 
 button:disabled {
@@ -59,10 +94,25 @@ button:hover:enabled {
     background-color: #74b9ff;
 }
 
+/* Error message styling with animation */
 .error-message {
     color: #d63031;
     background-color: #ffe6e6;
     padding: 10px;
     border-radius: 5px;
     margin-top: 10px;
+    animation: fadeIn 0.5s ease;
+}
+
+/* Background animation */
+@keyframes gradient {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* Fade-in animation for error messages */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
 }
