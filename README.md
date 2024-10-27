@@ -22,7 +22,7 @@ Microshop is a web application built using React. It provides a platform for sma
                     open the project in Visual Studio Code:
                     Open Visual Studio Code 
                     Go to File > Open Folder....
-                    Select the extracted directory (e.g., Microshop/microshop).
+                    Select the extracted directory (e.g., Microshop).
                      
    ```
 2. Install the dependencies: <br />
