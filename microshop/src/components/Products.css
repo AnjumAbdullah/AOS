@@ -7,7 +7,7 @@
     padding: 30px 0; /* Increased vertical padding */
     background-color: #f4f4f4;
     width: 100vw; /* Full viewport width */
-    height: 100vh; /* Optional: Full viewport height */
+    min-height: 150vh; /* Optional: Full viewport height */
 }
 
 .products-container {
