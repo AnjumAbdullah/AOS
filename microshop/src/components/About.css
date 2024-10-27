@@ -3,8 +3,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 150vh; /* Adjust the height to avoid overlap with the header */
-  padding: 20px;
+  min-height: 150vh;
+  padding: 100px 20px 20px; /* Top padding to account for the header */
   background: linear-gradient(135deg, #f9f9f9, #e9ecef);
 }
 

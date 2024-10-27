@@ -1,26 +1,37 @@
+/* Wrapper for centering the form */
 .sign-up-wrapper {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh; /* Full viewport height */
-    background-color: #f4f4f4; /* Background color */
+    height: 100vh;
+    background: linear-gradient(135deg, #74b9ff, #a29bfe);
+    animation: gradient 5s ease infinite;
+    background-size: 300% 300%;
 }
 
+/* Container for the form */
 .sign-up-container {
     background-color: #fff;
     padding: 40px;
-    border-radius: 10px;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    border-radius: 15px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
     max-width: 400px;
     width: 100%;
     text-align: center;
+    transition: transform 0.2s;
 }
 
+.sign-up-container:hover {
+    transform: scale(1.05);
+}
+
+/* Title styling */
 .sign-up-container h2 {
     margin-bottom: 20px;
-    color: #333;
+    color: #2d3436;
 }
 
+/* Input group with some padding */
 .input-group {
     margin-bottom: 15px;
     position: relative;
@@ -32,13 +43,37 @@ input {
     border: 1px solid #dfe6e9;
     border-radius: 5px;
     transition: border-color 0.3s ease-in-out;
+    background-color: #f1f2f6;
+    font-size: 16px;
 }
 
 input:focus {
     border-color: #74b9ff;
     outline: none;
+    background-color: #dfe6e9;
 }
 
+/* Password strength indicator */
+.password-strength {
+    margin-top: 5px;
+    display: block;
+    font-size: 12px;
+    text-align: left;
+}
+
+.password-strength.weak {
+    color: #d63031;
+}
+
+.password-strength.medium {
+    color: #fdcb6e;
+}
+
+.password-strength.strong {
+    color: #00b894;
+}
+
+/* Button styles */
 button {
     width: 100%;
     padding: 12px;
@@ -48,6 +83,7 @@ button {
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s;
+    font-size: 16px;
 }
 
 button:disabled {
@@ -59,6 +95,17 @@ button:hover:enabled {
     background-color: #74b9ff;
 }
 
+/* Spinner icon for loading state */
+.spinner {
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Error and success messages */
 .error-message {
     color: #d63031;
     background-color: #ffe6e6;
@@ -73,8 +120,12 @@ button:hover:enabled {
     padding: 10px;
     border-radius: 5px;
     margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
 }
 
+/* Alternative option styles */
 .alternative-options {
     margin-top: 20px;
     font-size: 14px;
@@ -87,4 +138,11 @@ button:hover:enabled {
 
 .alternative-options a:hover {
     text-decoration: underline;
+}
+
+/* Gradient background animation */
+@keyframes gradient {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
 }
