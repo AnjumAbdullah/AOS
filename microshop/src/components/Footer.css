@@ -1,6 +1,6 @@
 /* Footer.css */
 .footer {
-    position: fixed; /* Keep the footer fixed at the bottom */
+    position: sticky; /* Keep footer at the bottom when scrolling */
     bottom: 0;
     left: 0;
     width: 100%;
@@ -12,22 +12,23 @@
     padding: 15px 0;
     text-align: center;
     box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.1); /* Shadow on top */
-    transition: transform 0.3s ease;
     height: 30px;
+    transition: transform 0.2s ease;
 }
 
-
+/* Avoid scaling conflicts */
 .footer:hover {
-    transform: scale(1.02); /* Slight zoom on hover */
+    transform: scale(1.01); /* Slight zoom to prevent overlap */
 }
 
+/* Footer text styling */
 .footer-text {
     font-family: 'Poppins', sans-serif;
     font-size: 1rem;
     margin: 0;
 }
 
-/* Reusing the gradient animation from the header */
+/* Gradient animation reused */
 @keyframes gradientAnimation {
     0% {
         background-position: 0% 50%;

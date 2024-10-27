@@ -6,12 +6,25 @@
     background-size: 200% 200%;
     animation: backgroundShift 8s ease infinite;
     color: white;
-    min-height: calc(100vh - 65px); /* Adjust height to avoid overlap with header */
+
+    min-height: 100vh; /* Full height of the viewport */
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-between;
-    margin-top: 65px; /* Ensure it starts below the header */
+    gap: 20px; /* Space between elements */
+
+    padding-top: 80px; /* Push content below the header */
+    padding-bottom: 50px; /* Leave space for the footer */
+    box-sizing: border-box;
+}
+
+
+.countdown-timer {
+    flex-grow: 1; /* Prevent layout jumps */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-bottom: 20px;
 }
 
 @keyframes backgroundShift {

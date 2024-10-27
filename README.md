@@ -32,6 +32,7 @@ Microshop is a web application built using React. It provides a platform for sma
         npm install react-scripts
         npm install firebase
         npm install react-icon
+        npm install react-responsive-carousel
 ```
 ## Usage
 ```sh
@@ -48,6 +49,7 @@ react: ^18.3.1<br />
 react-dom: ^18.3.1<br />
 react-icons: ^5.3.0<br />
 react-router-dom: ^6.27.0<br />
+react-responsive-carousel: ^3.2.23<br />
 firebase: ^11.0.1<br /><br />
 ```
 For a full list of dependencies, refer to the package.json file.
