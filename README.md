@@ -1,6 +1,18 @@
 # Microshop
 
-Microshop is a web application built using React. It provides a platform for small businesses to create and manage their online shop.
+Microshop is a web application built using React, providing a platform for people to buy products via e-commerce. Our goal is to offer a seamless and enjoyable shopping experience for users.
+
+## Upcoming Enhancements
+```sh
+Microservice Architecture
+   Scalability: Improved performance by breaking down the application into smaller services.
+   Maintainability: Easier updates and faster development cycles.
+   Reliability: Fault isolation to ensure issues in one service don’t affect the entire application.
+Docker Integration
+   Consistency: Ensures the application runs the same across different environments.
+   Simplified Deployment: Easier to manage and scale the application.
+   Efficiency: Lightweight containers improve resource usage and performance.
+```
 
 ## Table of Contents
 
