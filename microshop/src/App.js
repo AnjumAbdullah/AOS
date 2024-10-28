@@ -12,10 +12,7 @@ import Footer from './components/Footer';
 import Signup from './components/Signup';
 import Login from './components/Login';
 import Logout from './components/Logout';
-import ProtectedRoute from './components/PrivateRoute';
-
-
-// {/* <Route path="/products" element={<PrivateRoute><Products /></PrivateRoute>} />  */}
+import ProtectedRoute from './components/ProtectedRoute'; // Make sure to import ProtectedRoute
 
 function App() {
     return (
@@ -23,15 +20,16 @@ function App() {
             <div style={appStyle}>
                 <Header />
                 <Routes>
-                    <ProtectedRoute path="/products" element={<Products />} />
-                    <ProtectedRoute path="/" element={<Home />} />
-                    <ProtectedRoute path="/orders" element={<Orders />} />
-                    <ProtectedRoute path="/sale" element={<Sale />} />
-                    <ProtectedRoute path="/about" element={<About />} />
-                    <ProtectedRoute path="/contact" element={<Contact />} />
-                    <ProtectedRoute path="/signup" element={<Signup />} />
-                    <ProtectedRoute path="/login" element={<Login />} />
-                    <ProtectedRoute path="/logout" element={<Logout />} />
+                    {/* Wrap protected routes with ProtectedRoute */}
+                    <Route path="/" element={<ProtectedRoute element={<Home />} />} />
+                    <Route path="/products" element={<ProtectedRoute element={<Products />} />} />
+                    <Route path="/orders" element={<ProtectedRoute element={<Orders />} />} />
+                    <Route path="/sale" element={<ProtectedRoute element={<Sale />} />} />
+                    <Route path="/about" element={<ProtectedRoute element={<About />} />} />
+                    <Route path="/contact" element={<ProtectedRoute element={<Contact />} />} />
+                    <Route path="/signup" element={<Signup />} />
+                    <Route path="/login" element={<Login />} />
+                    <Route path="/logout" element={<Logout />} />
                 </Routes>
                 <Footer />
             </div>
@@ -40,10 +38,9 @@ function App() {
 }
 
 const appStyle = {
-    // minHeight: '100vh',
     display: 'flex',
     flexDirection: 'column',
-    justifyContent: 'space-between'
+    justifyContent: 'space-between',
 };
 
 export default App;
