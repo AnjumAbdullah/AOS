@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { auth } from '../firebase';
 import { signInWithEmailAndPassword } from 'firebase/auth';
-import './Login.css'; // Import custom CSS for styling
-import { FaEye, FaEyeSlash } from 'react-icons/fa'; // Icons for password visibility
+import './Login.css';
+import { FaEye, FaEyeSlash } from 'react-icons/fa';
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -10,6 +11,7 @@ const Login = () => {
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
+  const navigate = useNavigate(); // Initialize useNavigate for redirection
 
   const togglePasswordVisibility = () => setShowPassword((prev) => !prev);
 
@@ -21,6 +23,7 @@ const Login = () => {
     try {
       await signInWithEmailAndPassword(auth, email, password);
       alert('Logged in successfully!');
+      navigate('/'); // Redirect to the home page after login
     } catch (err) {
       switch (err.code) {
         case 'auth/wrong-password':
@@ -42,7 +45,7 @@ const Login = () => {
           setError('Network error. Please check your connection.');
           break;
         default:
-          setError('Error logging in. Please try again.');
+          setError(`Error logging in: ${err.message}`);
       }
     } finally {
       setLoading(false);
