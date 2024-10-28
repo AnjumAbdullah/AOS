@@ -54,6 +54,7 @@ These commands should display the installed versions of Node.js and npm.
         npm install firebase
         npm install react-icon
         npm install react-responsive-carousel
+        npm install react-firebase-hooks 
 ```
 ## Usage
 ```sh
