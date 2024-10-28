@@ -35,6 +35,8 @@
 .input-group {
     margin-bottom: 15px;
     position: relative;
+    display: flex;
+    align-items: center;
 }
 
 /* Password group with visibility icon */

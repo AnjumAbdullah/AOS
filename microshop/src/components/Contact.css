@@ -4,7 +4,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    min-height: 70vh;  /* Adjust for header height */
+    min-height: 100vh;  /* Adjust for header height */
     padding: 20px;
     background: linear-gradient(135deg, #f9f9f9, #e9ecef);
     text-align: center;
