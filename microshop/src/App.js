@@ -12,6 +12,7 @@ import Footer from './components/Footer';
 import Signup from './components/Signup';
 import Login from './components/Login';
 import Logout from './components/Logout';
+import ProtectedRoute from './components/PrivateRoute';
 
 
 // {/* <Route path="/products" element={<PrivateRoute><Products /></PrivateRoute>} />  */}
@@ -22,15 +23,15 @@ function App() {
             <div style={appStyle}>
                 <Header />
                 <Routes>
-                    <Route path="/" element={<Home />} />
-                    <Route path="/products" element={<Products />} />
-                    <Route path="/orders" element={<Orders />} />
-                    <Route path="/sale" element={<Sale />} />
-                    <Route path="/about" element={<About />} />
-                    <Route path="/contact" element={<Contact />} />
-                    <Route path="/signup" element={<Signup />} />
-                    <Route path="/login" element={<Login />} />
-                    <Route path="/logout" element={<Logout />} />
+                    <ProtectedRoute path="/products" element={<Products />} />
+                    <ProtectedRoute path="/" element={<Home />} />
+                    <ProtectedRoute path="/orders" element={<Orders />} />
+                    <ProtectedRoute path="/sale" element={<Sale />} />
+                    <ProtectedRoute path="/about" element={<About />} />
+                    <ProtectedRoute path="/contact" element={<Contact />} />
+                    <ProtectedRoute path="/signup" element={<Signup />} />
+                    <ProtectedRoute path="/login" element={<Login />} />
+                    <ProtectedRoute path="/logout" element={<Logout />} />
                 </Routes>
                 <Footer />
             </div>

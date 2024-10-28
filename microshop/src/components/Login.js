@@ -26,8 +26,8 @@ const Login = () => {
       navigate('/'); // Redirect to the home page after login
     } catch (err) {
       switch (err.code) {
-        case 'auth/wrong-password':
-          setError('Incorrect password. Please try again.');
+        case 'auth/invalid-credential':
+          setError('Incorrect credentials. Please try again.');
           break;
         case 'auth/user-not-found':
           setError('No user found with this email.');
