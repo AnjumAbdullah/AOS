@@ -1,6 +1,7 @@
 // src/App.js
-import React from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { auth } from './firebase'; 
+import React, { useEffect, useState } from 'react';
+import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 import Header from './components/Header';
 import Home from './components/Home';
 import Products from './components/Products';
@@ -12,35 +13,51 @@ import Footer from './components/Footer';
 import Signup from './components/Signup';
 import Login from './components/Login';
 import Logout from './components/Logout';
-import ProtectedRoute from './components/ProtectedRoute'; // Make sure to import ProtectedRoute
+import ProtectedRoute from './components/ProtectedRoute';
+
 
 function App() {
-    return (
-        <Router>
-            <div style={appStyle}>
-                <Header />
-                <Routes>
-                    {/* Wrap protected routes with ProtectedRoute */}
-                    <Route path="/" element={<ProtectedRoute element={<Home />} />} />
-                    <Route path="/products" element={<ProtectedRoute element={<Products />} />} />
-                    <Route path="/orders" element={<ProtectedRoute element={<Orders />} />} />
-                    <Route path="/sale" element={<ProtectedRoute element={<Sale />} />} />
-                    <Route path="/about" element={<ProtectedRoute element={<About />} />} />
-                    <Route path="/contact" element={<ProtectedRoute element={<Contact />} />} />
-                    <Route path="/signup" element={<Signup />} />
-                    <Route path="/login" element={<Login />} />
-                    <Route path="/logout" element={<Logout />} />
-                </Routes>
-                <Footer />
-            </div>
-        </Router>
-    );
+  const [user, setUser] = useState(null); // State to track the authenticated user
+  const [loading, setLoading] = useState(true); // State to track loading status
+
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged((user) => {
+      setUser(user); // Update user state
+      setLoading(false); // Stop loading once we know the user's state
+    });
+    return () => unsubscribe(); // Clean up the listener
+  }, []);
+
+  if (loading) {
+    return <div>Loading...</div>; // Optionally show a loading spinner or message
+  }
+
+  return (
+    <Router>
+      <div style={appStyle}>
+        <Header />
+        <Routes>
+          {/* Protected routes */}
+          <Route path="/" element={<ProtectedRoute user={user} element={<Home />} />} />
+          <Route path="/products" element={<ProtectedRoute user={user} element={<Products />} />} />
+          <Route path="/orders" element={<ProtectedRoute user={user} element={<Orders />} />} />
+          <Route path="/sale" element={<ProtectedRoute user={user} element={<Sale />} />} />
+          <Route path="/about" element={<ProtectedRoute user={user} element={<About />} />} />
+          <Route path="/contact" element={<ProtectedRoute user={user} element={<Contact />} />} />
+          <Route path="/signup" element={<Signup />} />
+          <Route path="/login" element={user ? <Navigate to="/" /> : <Login />} />
+          <Route path="/logout" element={<Logout />} />
+        </Routes>
+        <Footer />
+      </div>
+    </Router>
+  );
 }
 
 const appStyle = {
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'space-between',
+  display: 'flex',
+  flexDirection: 'column',
+  justifyContent: 'space-between',
 };
 
 export default App;
