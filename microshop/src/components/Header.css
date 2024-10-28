@@ -13,14 +13,49 @@
     text-align: center;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease;
-    height: 65px;
-    min-height: 6vh;
+   
+    min-height: 7vh;
+
 }
 
 /* Ensure the layout leaves space for the header */
 body {
     margin: 0;
     box-sizing: border-box;
+}
+
+/* Header and Nav Styling */
+.header nav {
+    display: flex;
+    justify-content: center;
+}
+
+.nav-list {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+}
+
+/* Style for Logout Button to match other nav links and align */
+.logout-button {
+    background: none;
+    border: none;
+    color: #001d3d;
+    font-weight: bold;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: color 0.3s, transform 0.2s;
+    display: inline-flex; /* Aligns it like a link */
+    align-items: center; /* Centers text vertically */
+    padding: 0; /* Ensures no extra spacing */
+}
+
+.logout-button:hover {
+    color: #ff6f61;
+    transform: scale(1.1);
 }
 
 main.main-content {
