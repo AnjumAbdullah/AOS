@@ -25,6 +25,27 @@ Microshop is a web application built using React. It provides a platform for sma
                     Select the extracted directory (e.g., Microshop).
                      
    ```
+## Important - Make sure Node.js is installed in the system.
+```sh
+To install Node.js, follow these steps:
+
+Download the Installer:
+
+Go to the Node.js download page.
+Download the installer for your operating system (Windows, macOS, or Linux).
+Run the Installer:
+
+Open the downloaded file and follow the instructions in the installer.
+Make sure to install the necessary tools, including npm (Node.js package manager).
+Verify the Installation:
+
+Open a terminal or command prompt.
+Run the following commands to verify that Node.js and npm were installed correctly:
+node -v
+npm -v
+These commands should display the installed versions of Node.js and npm.
+```
+
 2. Install the dependencies: <br />
 ```sh
         cd Microshop
@@ -33,6 +54,7 @@ Microshop is a web application built using React. It provides a platform for sma
         npm install firebase
         npm install react-icon
         npm install react-responsive-carousel
+        npm install react-firebase-hooks 
 ```
 ## Usage
 ```sh
