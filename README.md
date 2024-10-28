@@ -67,12 +67,13 @@ This will start the application on http://localhost:3000
 
 The project relies on the following major dependencies:<br />
  ```sh
-react: ^18.3.1<br />
-react-dom: ^18.3.1<br />
-react-icons: ^5.3.0<br />
-react-router-dom: ^6.27.0<br />
-react-responsive-carousel: ^3.2.23<br />
-firebase: ^11.0.1<br /><br />
+react: ^18.3.1
+react-dom: ^18.3.1
+react-icons: ^5.3.0
+react-router-dom: ^6.27.0
+react-responsive-carousel: ^3.2.23
+firebase: ^11.0.1
+react-firebase-hooks
 ```
 For a full list of dependencies, refer to the package.json file.
 ## Limitations
