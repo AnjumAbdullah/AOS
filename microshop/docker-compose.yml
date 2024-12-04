@@ -1,30 +1,33 @@
 version: '3.8'
-services:
-  mongodb:
-    image: mongo:latest
-    container_name: mongodb
-    ports:
-      - "27017:27017"
-    volumes:
-      - mongodb_data:/data/db
-    networks:
-      - my_network
 
-  flask-api:
-    build: .
-    container_name: flask-api
+services:
+  # Frontend Service (React)
+  frontend:
+    build:
+      context: . # Path to your frontend code
+      dockerfile: Dockerfile.frontend  # Path to the Dockerfile in the components folder
     ports:
-      - "5000:5000"
-    depends_on:
-      - mongodb
+      - "8080:80"  # Expose the React app on port 8080
+
+  # Backend Service (Flask API)
+  backend:
+    build:
+      context: .  # Root context for Flask API
+      dockerfile: Dockerfile.api  # Path to the backend Dockerfile in the root directory
+    ports:
+      - "5000:5000"  # Expose the Flask API on port 5000
     environment:
-      - MONGO_URI=mongodb://mongodb:27017/mydatabase
-    networks:
-      - my_network
+      - MONGO_URI=mongodb://mongo:27017/microshop-orders  # MongoDB connection string
+    depends_on:
+      - mongo  # Ensure MongoDB starts before the backend
+
+  # MongoDB Service
+  mongo:
+    image: mongo:latest  # Use the latest MongoDB image
+    volumes:
+      - mongo_data:/data/db  # Persist MongoDB data
+    ports:
+      - "27017:27017"  # Expose MongoDB on port 27017
 
 volumes:
-  mongodb_data:
-
-networks:
-  my_network:
-    driver: bridge
+  mongo_data:  # Persistent volume for MongoDB data

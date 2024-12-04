@@ -2,12 +2,14 @@ from flask import Flask, request, jsonify
 from flask_cors import CORS
 from pymongo import MongoClient
 from datetime import datetime
+import os
 
 app = Flask(__name__)
 CORS(app)  # To allow communication with the React frontend
 
-# Connect to MongoDB
-client = MongoClient("mongodb://localhost:27017/")  # MongoDB running locally
+# Get MongoDB URI from environment variable or fallback to default
+mongo_uri = os.getenv('MONGO_URI', 'mongodb://mongo:27017/microshop-orders')  # MongoDB URI in Docker container
+client = MongoClient(mongo_uri)
 db = client["microshop"]
 orders_collection = db["orders"]
 
@@ -95,4 +97,4 @@ def create_order():
     return jsonify(new_order), 201
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host='0.0.0.0', port=5000, debug=True)  # Expose to external network (0.0.0.0)
