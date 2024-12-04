@@ -5,9 +5,9 @@ import './Sale.css';
 const Sale = () => {
   const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
 
-  // Countdown to Black Friday Sale (e.g., November 29, 2024)
+  // Countdown to Christmas Sale (e.g., November 29, 2024)
   useEffect(() => {
-    const targetDate = new Date('November 29, 2024 00:00:00').getTime();
+    const targetDate = new Date('December 22, 2024 00:00:00').getTime();
     const timer = setInterval(() => {
       const now = new Date().getTime();
       const difference = targetDate - now;
@@ -27,7 +27,7 @@ const Sale = () => {
 
   return (
     <div className="sale-container">
-      <h1 className="sale-title">🎉 Black Friday Sale! 🎉</h1>
+      <h1 className="sale-title">🎉 Early Christmas Sale! 🎉</h1>
       <div className="countdown-timer">
         <h2>Sale Begins In:</h2>
         <div className="timer">
