@@ -1,19 +1,21 @@
 /* Orders.css */
 
+/* General Wrapper */
 .main-wrapper {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 80vh;
+    flex-direction: column;
+    justify-content: space-between; /* Pushes footer to the bottom */
+    min-height: 100vh; /* Full screen height */
     background-color: #f0f2f5;
     padding-top: 70px; /* Space to prevent overlap with header */
 }
 
+/* Order Container */
 .order-container {
     padding: 50px;
     max-width: 900px;
     width: 100%;
-    margin: 0 20px; /* Adds some margin for smaller screens */
+    margin: 20px auto; /* Centers the container with margin on smaller screens */
     text-align: center;
     background-color: #f9f9f9;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -27,15 +29,15 @@
     color: #003049;
 }
 
-/* Existing table and button styles remain unchanged */
-
+/* Table Styling */
 .order-table {
     width: 100%;
     border-collapse: collapse;
     margin-top: 20px;
 }
 
-.order-table th, .order-table td {
+.order-table th,
+.order-table td {
     padding: 15px;
     text-align: center;
     border-bottom: 1px solid #ddd;
@@ -53,89 +55,73 @@
     cursor: pointer;
 }
 
-/* Status Badges */
-.status-badge {
-    padding: 5px 10px;
-    border-radius: 5px;
-    color: white;
-    font-weight: bold;
-    font-size: 0.9rem;
-}
-
-.status-badge.processing {
-    background-color: #ffc107;
-}
-
-.status-badge.shipped {
-    background-color: #17a2b8;
-}
-
-.status-badge.delivered {
-    background-color: #28a745;
-}
-
-.status-badge.cancelled {
-    background-color: #dc3545;
-}
-
-/* View Button Styling */
-.view-button {
-    background-color: #8be3a1;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 25px;
-    font-weight: bold;
-    transition: background-color 0.3s, transform 0.2s;
-    cursor: pointer;
-}
-
-.view-button:hover {
-    background-color: #6bc280;
-    transform: scale(1.05);
-}
-
-p {
-    font-family: 'Poppins', sans-serif;
-    font-size: 1rem;
-    color: #888;
-    margin: 20px 0;
-    text-align: center;
-}
-
-/* Section headers for better user experience */
-.order-container h2 {
-    font-family: 'Poppins', sans-serif;
-    font-size: 1.5rem;
-    margin-top: 30px;
-    color: #003049;
-    border-bottom: 2px solid #fe8d63;
-    display: inline-block;
-    padding-bottom: 5px;
-}
-
+/* Modal Overlay */
 .modal-overlay {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.6);
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 1000;
+    z-index: 10000;
 }
 
 /* Modal Content */
 .modal-content {
     background: white;
     border-radius: 10px;
-    padding: 20px;
+    padding: 40px 30px;
     width: 90%;
-    max-width: 500px;
-    text-align: left;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    max-width: 600px;
+    text-align: center;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.modal-content h2 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+    color: #003049;
+}
+
+.modal-content form {
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+}
+
+.modal-content input,
+.modal-content textarea,
+.modal-content button {
+    width: 100%;
+    margin-bottom: 15px;
+    padding: 10px 15px;
+    font-size: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.modal-content textarea {
+    resize: none;
+    height: 100px;
+}
+
+.modal-content button {
+    background-color: #8be3a1;
+    color: white;
+    border: none;
+    font-weight: bold;
+    transition: background-color 0.3s, transform 0.2s;
+    cursor: pointer;
+}
+
+.modal-content button:hover {
+    background-color: #6bc280;
+    transform: scale(1.05);
 }
 
 /* Close Button */
@@ -153,4 +139,15 @@ p {
 
 .close-button:hover {
     background-color: #b52a34;
+}
+
+/* Footer */
+footer {
+    background-color: #f9f9f9;
+    padding: 20px;
+    text-align: center;
+    color: #888;
+    position: relative;
+    bottom: 0;
+    width: 100%;
 }

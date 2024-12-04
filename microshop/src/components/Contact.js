@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './Contact.css';
+import axios from 'axios';
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -28,13 +29,39 @@ const Contact = () => {
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (validateForm()) {
-      setSuccessMessage("Thank you! We'll get back to you soon.");
-      setFormData({ name: '', email: '', phone: '', subject: '', message: '' });
+        try {
+            const response = await fetch('http://localhost:5000/api/contact', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(formData),
+            });
+
+            console.log('API Response:', response);
+
+            if (response.ok) {
+                const data = await response.json();
+                console.log('Response Data:', data);
+
+                // Update success message and clear the form
+                setSuccessMessage("Thank you! We'll get back to you soon.");
+                setFormData({ name: '', email: '', phone: '', subject: '', message: '' });
+                console.log('Success Message Set:', successMessage);
+            } else {
+                const errorData = await response.json();
+                console.error('Error Response Data:', errorData);
+                setErrors({ api: errorData.error || 'Something went wrong' });
+            }
+        } catch (error) {
+            console.error('Network Error:', error);
+            setErrors({ api: 'Failed to send the message. Please try again.' });
+        }
     }
-  };
+};
 
   return (
     <div className="contact-wrapper">
@@ -42,6 +69,7 @@ const Contact = () => {
         <h2>Contact Us</h2>
         <p>If you have any questions, feel free to reach out!</p>
         {successMessage && <p className="success-message">{successMessage}</p>}
+        {errors.form && <p className="error-message">{errors.form}</p>}
         <form onSubmit={handleSubmit} className="contact-form">
           <div className="input-group">
             <label htmlFor="name">Name</label>

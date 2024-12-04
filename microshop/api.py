@@ -11,7 +11,10 @@ CORS(app)  # To allow communication with the React frontend
 mongo_uri = os.getenv('MONGO_URI', 'mongodb://mongo:27017/microshop-orders')  # MongoDB URI in Docker container
 client = MongoClient(mongo_uri)
 db = client["microshop"]
+
+# Collections
 orders_collection = db["orders"]
+contact_collection = db["contact_messages"]  # Collection for contact messages
 
 # In-memory database for products for demo purposes
 products = [
@@ -90,11 +93,32 @@ def create_order():
         "total": data["total"],
         "date": datetime.now().isoformat(),  # Store current date and time
     }
-    
+
     # Insert order into MongoDB
     result = orders_collection.insert_one(new_order)
     new_order["id"] = str(result.inserted_id)  # Add the MongoDB-generated ID to the response
     return jsonify(new_order), 201
+
+# Route to save contact form message to MongoDB
+@app.route('/api/contact', methods=['POST'])
+def save_contact_message():
+    data = request.get_json()
+
+    if not data.get("name") or not data.get("email") or not data.get("phone") or not data.get("subject") or not data.get("message"):
+        return jsonify({"error": "All fields are required."}), 400
+
+    new_message = {
+        "name": data["name"],
+        "email": data["email"],
+        "phone": data["phone"],
+        "subject": data["subject"],
+        "message": data["message"],
+        "date": datetime.now().isoformat(),
+    }
+
+    result = contact_collection.insert_one(new_message)
+    new_message["id"] = str(result.inserted_id)
+    return jsonify(new_message), 201
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000, debug=True)  # Expose to external network (0.0.0.0)

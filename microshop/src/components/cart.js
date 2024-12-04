@@ -52,6 +52,7 @@ const Cart = ({ cart, setCart, saveOrder }) => {
   };
 
   return (
+    <div className="main-container">
     <div className="cart-container">
       <h2 className="cart-title">Your Shopping Cart</h2>
       {cart.length === 0 ? (
@@ -156,6 +157,7 @@ const Cart = ({ cart, setCart, saveOrder }) => {
           </div>
         </div>
       )}
+    </div>
     </div>
   );
 };
