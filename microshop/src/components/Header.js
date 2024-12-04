@@ -39,12 +39,7 @@ const Header = ({ cart }) => {  // Receive cart prop
                         <li><Link to="/about">About</Link></li>
                         <li><Link to="/contact">Contact</Link></li>
                         
-                        {/* Display cart icon with total quantity */}
-                        <li>
-                            <Link to="/cart" className="cart-link">
-                                🛒 Cart <span className="cart-count">{totalQuantity}</span>
-                            </Link>
-                        </li>
+                       
 
                         {!user ? (
                             <>
@@ -55,7 +50,14 @@ const Header = ({ cart }) => {  // Receive cart prop
                             <li>
                                 <button onClick={handleLogout} className="logout-button">Logout</button>
                             </li>
+
                         )}
+                         <li>
+                            <Link to="/cart" className="cart-link">
+                            <span role="img" aria-label="cart">🛒</span> 
+                            <span className="cart-count">{totalQuantity}</span>
+                            </Link>
+                        </li>
                     </ul>
                 </nav>
             </header>

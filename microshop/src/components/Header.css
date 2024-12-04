@@ -120,7 +120,14 @@ main.main-content {
 .sale-link:hover {
     transform: scale(1.1);
 }
-
+.cart-count {
+    margin-left: 5px;
+    background-color: #ff6f61;
+    color: white;
+    border-radius: 50%;
+    padding: 5px 10px;
+    font-size: 1rem;
+}
 @keyframes gradientText {
     0% { background-position: 0% 50%; }
     50% { background-position: 100% 50%; }

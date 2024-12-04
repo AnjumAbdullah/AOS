@@ -24,7 +24,10 @@
 .cart-items {
     margin-bottom: 30px;
 }
-
+.cart-link {
+   position: relative;
+   left: 60vh;
+}
 .cart-item {
     display: flex;
     justify-content: space-between;
