@@ -1,54 +1,55 @@
 import React, { useState, useEffect } from 'react';
-import './Products.css'; // Importing the updated CSS file
+import './Products.css';
 
-const Products = () => {
-  const [cart, setCart] = useState([]);
-
-  // Static products array
+const Products = ({ cart, setCart }) => {
   const products = [
-    {
-      id: 1,
-      title: 'Stylish Jacket',
-      description: 'Comfortable and warm jacket for winter.',
-      image: '/assets/products.webp',
-      price: 59.99,
-    },
-    {
-      id: 2,
-      title: 'Running Shoes',
-      description: 'Lightweight shoes for everyday running.',
-      image: '/assets/shirts.jpg',
-      price: 89.99,
-    },
-    {
-      id: 3,
-      title: 'Smart Watch',
-      description: 'Track your fitness and stay connected.',
-      image: '/assets/watch.png',
-      price: 199.99,
-    },
+    { id: 1, title: 'Stylish Jacket', description: 'Comfortable and warm jacket for winter.', image: '/assets/products.webp', price: 59.99 },
+    { id: 2, title: 'Running Shoes', description: 'Lightweight shoes for everyday running.', image: '/assets/shirts.jpg', price: 89.99 },
+    { id: 3, title: 'Smart Watch', description: 'Track your fitness and stay connected.', image: '/assets/watch.png', price: 199.99 },
   ];
 
-  // Add product to cart
+  // Add product to cart or increase quantity if it already exists
   const addToCart = (product) => {
-    setCart([...cart, product]);
+    const productInCart = cart.find((item) => item.id === product.id);
+
+    if (productInCart) {
+      // If the product is already in the cart, increment the quantity
+      setCart(
+        cart.map((item) =>
+          item.id === product.id
+            ? { ...item, quantity: item.quantity + 1 }
+            : item
+        )
+      );
+    } else {
+      // If the product is not in the cart, add it with quantity 1
+      setCart([...cart, { ...product, quantity: 1 }]);
+    }
     alert(`${product.title} has been added to your cart!`);
   };
 
-  // Remove product from cart
+  // Remove product from cart or decrease quantity if greater than 1
   const removeFromCart = (productId) => {
-    setCart(cart.filter((item) => item.id !== productId));
-    alert('Product removed from your cart.');
+    const productInCart = cart.find((item) => item.id === productId);
+
+    if (productInCart && productInCart.quantity > 1) {
+      // If quantity is more than 1, decrease the quantity
+      setCart(
+        cart.map((item) =>
+          item.id === productId
+            ? { ...item, quantity: item.quantity - 1 }
+            : item
+        )
+      );
+    } else {
+      // If quantity is 1, remove the item completely
+      setCart(cart.filter((item) => item.id !== productId));
+    }
+    alert('Product updated in your cart.');
   };
 
   return (
     <div className="main-container">
-      <header className="header-section">
-        <h1>Welcome to Our Shop</h1>
-        <p>Find the best deals and explore amazing products tailored for you.</p>
-      </header>
-
-      {/* Products Section */}
       <div className="products-container">
         <h2 className="section-title">Our Products</h2>
         <div className="product-grid">
@@ -68,25 +69,7 @@ const Products = () => {
         </div>
       </div>
 
-      {/* Cart Section */}
-      <div className="cart-container">
-        <h2 className="section-title">Your Cart</h2>
-        {cart.length === 0 ? (
-          <p className="empty-cart-message">Your cart is empty.</p>
-        ) : (
-          cart.map((item) => (
-            <div key={item.id} className="cart-item">
-              <div className="cart-item-details">
-                <span className="cart-item-title">{item.title}</span>
-                <span className="cart-item-price">${item.price.toFixed(2)}</span>
-              </div>
-              <button onClick={() => removeFromCart(item.id)} className="remove-button">
-                Remove
-              </button>
-            </div>
-          ))
-        )}
-      </div>
+     
     </div>
   );
 };

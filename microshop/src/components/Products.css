@@ -168,3 +168,34 @@ body {
     color: #555;
     margin: 20px 0;
 }
+
+
+  
+  .cart-item-title {
+    font-size: 1rem;
+    font-weight: bold;
+    color: #333;
+  }
+  
+  
+  .cart-item-quantity {
+    font-size: 0.9rem;
+    color: #007bff;
+    margin-top: 5px;
+  }
+  
+  .remove-button {
+    background-color: #ff6f61;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .remove-button:hover {
+    background-color: #e63946;
+  }
+  

@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { auth } from '../firebase';
 import { onAuthStateChanged, signOut } from 'firebase/auth';
 
-const Header = () => {
+const Header = ({ cart }) => {  // Receive cart prop
     const [isHovered, setIsHovered] = useState(false);
     const [user, setUser] = useState(null);
 
@@ -21,6 +21,9 @@ const Header = () => {
         });
     };
 
+    // Calculate the total quantity of items in the cart
+    const totalQuantity = cart.reduce((acc, item) => acc + item.quantity, 0);
+
     return (
         <>
             <header className={`header ${isHovered ? 'hovered' : ''}`}
@@ -35,6 +38,13 @@ const Header = () => {
                         <li><Link to="/sale" className='sale-link'>Black Friday Sale!</Link></li>
                         <li><Link to="/about">About</Link></li>
                         <li><Link to="/contact">Contact</Link></li>
+                        
+                        {/* Display cart icon with total quantity */}
+                        <li>
+                            <Link to="/cart" className="cart-link">
+                                🛒 Cart <span className="cart-count">{totalQuantity}</span>
+                            </Link>
+                        </li>
 
                         {!user ? (
                             <>
@@ -49,8 +59,6 @@ const Header = () => {
                     </ul>
                 </nav>
             </header>
-
-            
         </>
     );
 };

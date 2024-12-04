@@ -1,4 +1,3 @@
-// src/App.js
 import { auth } from './firebase'; 
 import React, { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
@@ -13,12 +12,13 @@ import Footer from './components/Footer';
 import Signup from './components/Signup';
 import Login from './components/Login';
 import Logout from './components/Logout';
+import Cart from './components/cart';
 import ProtectedRoute from './components/ProtectedRoute';
-
 
 function App() {
   const [user, setUser] = useState(null); // State to track the authenticated user
   const [loading, setLoading] = useState(true); // State to track loading status
+  const [cart, setCart] = useState([]); // Cart state to track the items in the cart
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
@@ -35,15 +35,16 @@ function App() {
   return (
     <Router>
       <div style={appStyle}>
-        <Header />
+        <Header cart={cart} /> {/* Pass cart to Header */}
         <Routes>
           {/* Protected routes */}
           <Route path="/" element={<ProtectedRoute user={user} element={<Home />} />} />
-          <Route path="/products" element={<ProtectedRoute user={user} element={<Products />} />} />
+          <Route path="/products" element={<ProtectedRoute user={user} element={<Products cart={cart} setCart={setCart} />} />} />
           <Route path="/orders" element={<ProtectedRoute user={user} element={<Orders />} />} />
           <Route path="/sale" element={<ProtectedRoute user={user} element={<Sale />} />} />
           <Route path="/about" element={<ProtectedRoute user={user} element={<About />} />} />
           <Route path="/contact" element={<ProtectedRoute user={user} element={<Contact />} />} />
+          <Route path="/cart" element={<ProtectedRoute user={user} element={<Cart cart={cart} setCart={setCart} />} />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/login" element={user ? <Navigate to="/" /> : <Login />} />
           <Route path="/logout" element={<Logout />} />
