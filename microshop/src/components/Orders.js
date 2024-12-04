@@ -1,58 +1,74 @@
-// src/components/Orders.js
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 import './Orders.css';
 
-const ordersData = [
-  { id: '001', customer: 'Alice Johnson', status: 'Processing', total: 299.99 },
-  { id: '002', customer: 'Bob Smith', status: 'Shipped', total: 499.50 },
-  { id: '003', customer: 'Charlie Brown', status: 'Delivered', total: 159.99 },
-  { id: '004', customer: 'Diana Prince', status: 'Cancelled', total: 75.00 },
-];
-
 const Orders = () => {
-  const [orders, setOrders] = useState(ordersData);
+  const [orders, setOrders] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-  const handleOrderClick = (id) => {
-    alert(`Viewing details for order: ${id}`);
-  };
+  useEffect(() => {
+    const fetchOrders = async () => {
+      try {
+        const response = await axios.get('http://localhost:5000/api/orders'); // Replace with your API endpoint
+        setOrders(response.data);
+      } catch (err) {
+        setError('Failed to fetch orders. Please try again later.');
+        console.error('Error fetching orders:', err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchOrders();
+  }, []);
+
+  if (loading) {
+    return <div className="orders-loading">Loading your orders...</div>;
+  }
+
+  if (error) {
+    return <div className="orders-error">{error}</div>;
+  }
 
   return (
     <div className="main-wrapper">
       <div className="order-container">
-        <h1>Order Management</h1>
-        <table className="order-table">
-          <thead>
-            <tr>
-              <th>Order ID</th>
-              <th>Customer</th>
-              <th>Status</th>
-              <th>Total</th>
-              <th>Action</th>
-            </tr>
-          </thead>
-          <tbody>
-            {orders.map((order) => (
-              <tr key={order.id}>
-                <td>{order.id}</td>
-                <td>{order.customer}</td>
-                <td>
-                  <span className={`status-badge ${order.status.toLowerCase()}`}>
-                    {order.status}
-                  </span>
-                </td>
-                <td>${order.total.toFixed(2)}</td>
-                <td>
-                  <button
-                    className="view-button"
-                    onClick={() => handleOrderClick(order.id)}
-                  >
-                    View Details
-                  </button>
-                </td>
+        <h1>Order History</h1>
+        {orders.length > 0 ? (
+          <table className="order-table">
+            <thead>
+              <tr>
+                <th>Order ID</th>
+                <th>Name</th>
+                <th>Address</th>
+                <th>Total</th>
+                <th>Date</th>
+                <th>Items</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {orders.map((order) => (
+                <tr key={order.id}>
+                  <td>{order.id}</td>
+                  <td>{order.name}</td>
+                  <td>{order.address}</td>
+                  <td>${order.total.toFixed(2)}</td>
+                  <td>{new Date(order.date).toLocaleDateString()}</td>
+                  <td>
+                    <ul>
+                      {order.items.map((item, index) => (
+                        <li key={index}>{item.title} (x{item.quantity})</li>
+                      ))}
+                    </ul>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        ) : (
+          <p>No orders found. Place your first order!</p>
+        )}
       </div>
     </div>
   );
