@@ -53,9 +53,39 @@ Microshop is a web application for online shopping, providing a user-friendly pl
 ### Steps
 1. Clone the repository:
    ```bash
-   git clone <repository-url>
+   git clone https://github.com/AnjumAbdullah/Microshop
    cd Microshop
-   ```
+   
+   or
+   For downloading: download the repository as a ZIP file.
+                    extract the ZIP file.
+                    open the project in Visual Studio Code:
+                    Open Visual Studio Code 
+                    Go to File > Open Folder....
+                    Select the extracted directory (e.g., Microshop).
+
+    ```
+## Important - Make sure Node.js is installed in the system.
+```sh
+To install Node.js, follow these steps:
+
+Download the Installer:
+
+Go to the Node.js download page.
+Download the installer for your operating system (Windows, macOS, or Linux).
+Run the Installer:
+
+Open the downloaded file and follow the instructions in the installer.
+Make sure to install the necessary tools, including npm (Node.js package manager).
+Verify the Installation:
+
+Open a terminal or command prompt.
+Run the following commands to verify that Node.js and npm were installed correctly:
+node -v
+npm -v
+These commands should display the installed versions of Node.js and npm.
+```
+
 
 2. Install dependencies:
    - **Frontend**:
