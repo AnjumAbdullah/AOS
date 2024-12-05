@@ -8,13 +8,16 @@ app = Flask(__name__)
 CORS(app)  # To allow communication with the React frontend
 
 # Get MongoDB URI from environment variable or fallback to default
-mongo_uri = os.getenv('MONGO_URI', 'mongodb://mongo:27017/microshop-orders')  # MongoDB URI in Docker container
+mongo_uri = os.getenv('MONGO_URI', 'mongodb://mongo:27017')  # MongoDB URI in Docker container
 client = MongoClient(mongo_uri)
-db = client["microshop"]
+
+# Separate databases
+orders_db = client["microshop-orders"]
+contact_db = client["microshop-contact"]
 
 # Collections
-orders_collection = db["orders"]
-contact_collection = db["contact_messages"]  # Collection for contact messages
+orders_collection = orders_db["orders"]
+contact_collection = contact_db["contact_messages"]
 
 # In-memory database for products for demo purposes
 products = [
@@ -71,7 +74,7 @@ def delete_product(product_id):
 # Routes for Orders
 @app.route('/api/orders', methods=['GET'])
 def get_orders():
-    """Retrieve all orders from MongoDB."""
+    """Retrieve all orders from the orders database."""
     orders = list(orders_collection.find())
     for order in orders:
         order["_id"] = str(order["_id"])  # Convert MongoDB ObjectId to string
@@ -79,7 +82,7 @@ def get_orders():
 
 @app.route('/api/orders', methods=['POST'])
 def create_order():
-    """Save a new order to MongoDB."""
+    """Save a new order to the orders database."""
     data = request.get_json()
 
     # Validate order data
@@ -99,23 +102,26 @@ def create_order():
     new_order["id"] = str(result.inserted_id)  # Add the MongoDB-generated ID to the response
     return jsonify(new_order), 201
 
-# Route to save contact form message to MongoDB
+# Route to save contact form message to the contact database
 @app.route('/api/contact', methods=['POST'])
 def save_contact_message():
     data = request.get_json()
 
+    # Validate the data
     if not data.get("name") or not data.get("email") or not data.get("phone") or not data.get("subject") or not data.get("message"):
         return jsonify({"error": "All fields are required."}), 400
 
+    # Prepare the contact message data
     new_message = {
         "name": data["name"],
         "email": data["email"],
         "phone": data["phone"],
         "subject": data["subject"],
         "message": data["message"],
-        "date": datetime.now().isoformat(),
+        "date": datetime.now().isoformat(),  # Save current date and time
     }
 
+    # Insert the message into MongoDB
     result = contact_collection.insert_one(new_message)
     new_message["id"] = str(result.inserted_id)
     return jsonify(new_message), 201
